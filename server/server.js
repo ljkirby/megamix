@@ -16,7 +16,8 @@ var fs = require('fs')
 var multer = require('multer');
 var upload = multer();
 var { Duplex } = require('stream');
-var noodle = express()
+var noodle = express();
+noodle.use(express.json());
 
 //Creating a sox command
 var command = sox();
@@ -63,13 +64,22 @@ noodle.get('/play',
         mainTrackStream.pipe(res);
     });
 
+noodle.post('/test', (req, res) => {
+  console.log(req);
+  console.log(req.body);
+  console.log(req.data);
+});
+
 //Posting a sequence recording
-noodle.post('/seqrec', upload.single('soundBlob'),
+//noodle.post('/seqrec', upload.single('soundBlob'),
+noodle.post('/seqrec', 
     async (req, res) => {
         try {
             //Copy main to temp
+            console.log("========TRIGGERED======");
+          console.log(req);
 
-            fs.writeFileSync(currentTrack, Buffer.from(new Uint8Array(req.file.buffer)));
+            fs.writeFileSync(currentTrack, Buffer.from(new Uint8Array(req.data)));
             await fs.createReadStream(mainTrack).pipe(fs.createWriteStream(tempTrack));
             let concatCommand = sox();
             concatCommand.input(tempTrack);
