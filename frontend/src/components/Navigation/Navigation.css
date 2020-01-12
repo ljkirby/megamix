@@ -1,0 +1,40 @@
+.navBar {
+    background: black;
+}
+
+.navBar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navBar li {
+  float: left;
+  height: 100%;
+  display: flex;
+  vertical-align: center;
+}
+
+.navBar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navBar li a:hover {
+  background-color: #111;
+}
+
+#account {
+  float: right;
+}
+
+#accountIcon {
+    padding-top: 11px;
+    padding-bottom: 5px;
+}
+

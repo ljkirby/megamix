@@ -1,0 +1,23 @@
+{
+  "name": "megamix-server",
+  "version": "1.0.0",
+  "description": "Collaborative music app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ljkirby/megamix.git"
+  },
+  "author": "Zachary Anderson & Lisa Kirby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ljkirby/megamix/issues"
+  },
+  "homepage": "https://github.com/ljkirby/megamix#readme"
+}
