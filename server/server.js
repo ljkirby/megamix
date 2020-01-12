@@ -11,6 +11,7 @@ const archiveDirectory = process.env.ARC_DIR || "archive/";
 var express = require('express')
 var sox = require('sox-audio')
 var fs = require('fs')
+var { Duplex } = require('stream');
 var noodle = express()
 
 //Creating a sox command
@@ -53,14 +54,15 @@ noodle.get('/play',
     function(req, res){
         console.log("Sending out play request");
         let audioStream = fs.createReadStream(mainTrack);
-        audioStream.on('close', () =>);//FIX ME
-        res.send("Here's your music!");
+        let audioStream2 = fs.createReadStream(currentTrack);
+        res.type("audio/wav");
+        audioStream.pipe(res);
+        audioStream2.pipe(res);
     });
 
 //Posting a sequence recording
 noodle.post('/seqrec',
     (req, res) => {
-
         //var concatCommand = sox();
         //concatCommand(mainTrack);
         //concatCommand.concat();

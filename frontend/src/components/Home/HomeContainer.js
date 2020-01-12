@@ -94,7 +94,7 @@ export default class HomeContainer extends React.Component {
       });
       console.log(this.state.recordedAudioBuffer);
       console.log("STOP RECORDING");
-      Recorder.download(blob, 'my-audio-file');
+      Recorder.download(blob, 'recording');
       /*
       this.state.recordedAudio.play();
       let recordedFile = new Audio(blob);
