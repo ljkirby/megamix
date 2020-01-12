@@ -1,10 +1,10 @@
 "use strict"
 
 const port = process.env.PORT || 3000;
-const { delimiter } = require('path');
-const paths = process.env.PATH.split(delimiter);
-paths.push("/c/Users/Zachary/Downloads/sox-14.4.2-win32_v2/sox-14.4.2/sox");
-process.env.PATH = paths.join(delimiter);
+
+
+
+
 
 //Your app is a noodle
 
