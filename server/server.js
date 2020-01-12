@@ -53,23 +53,26 @@ noodle.get('/', (req, res) => res.send('TEST ME AHHHH'));
 noodle.get('/play',
     function(req, res){
         console.log("Sending out play request");
-        let audioStream = fs.createReadStream(mainTrack);
-        let audioStream2 = fs.createReadStream(currentTrack);
         res.type("audio/wav");
-        audioStream.pipe(res);
-        audioStream2.pipe(res);
+        let mainTrackStream = fs.createReadStream(mainTrack);
+        mainTrackStream.pipe(res);
     });
 
 //Posting a sequence recording
 noodle.post('/seqrec',
     (req, res) => {
-        //var concatCommand = sox();
-        //concatCommand(mainTrack);
-        //concatCommand.concat();
-        //concatCommand.(currentTrack);
-        //saveFile(req,res,currentTrack);
+        let concatCommand = sox();
+        concatCommand.input(mainTrack);
+        concatCommand.input(currentTrack);
+        concatCommand.concat();
+        concatCommand.output(tempTrack);
+        saveFile(req,res,currentTrack);
         console.log("Sequence Recording Recieved!");
         res.send();
+        concatCommand.on('end', () => {
+            fs.writeFile(mainTrack)
+        });
+        concatCommand.run();
     });
 
 //Posting a mix recording
