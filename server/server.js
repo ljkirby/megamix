@@ -52,6 +52,8 @@ noodle.get('/', (req, res) => res.send('TEST ME AHHHH'));
 noodle.get('/play',
     function(req, res){
         console.log("Sending out play request");
+        let audioStream = fs.createReadStream(mainTrack);
+        audioStream.on('close', () =>);//FIX ME
         res.send("Here's your music!");
     });
 
@@ -65,13 +67,14 @@ noodle.post('/seqrec',
         //concatCommand.(currentTrack);
         //saveFile(req,res,currentTrack);
         console.log("Sequence Recording Recieved!");
-
+        res.send();
     });
 
 //Posting a mix recording
 noodle.post('/mixrec', 
     function(req, res){
         console.log("Mixed Recording Recieved!");
+        res.send();
     });
 
 //Server Goes Live
